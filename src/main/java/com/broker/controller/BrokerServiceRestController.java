@@ -1,6 +1,7 @@
 package com.broker.controller;
 
 import com.broker.rabbitmq.ConfigureRabbitMQ;
+import io.swagger.v3.oas.annotations.Operation;
 import org.json.JSONObject;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class BrokerServiceRestController {
     private String searchURL = "http://localhost:8081/search-service";
 
 
+    @Operation(summary = "This method takes the username of a user, and retrieves the email attached to that user" +
+            ", assuming the user exists in the database.")
     @GetMapping("/account-service/get-user")
     public ResponseEntity<String> getUser(@RequestBody String jsonString) {
         String url = accountURL + "/get-user";
@@ -31,6 +34,7 @@ public class BrokerServiceRestController {
         return checkForError(response.getBody());
     }
 
+    @Operation(summary = "This method creates a user, taking a username, email, and password")
     @PostMapping("/account-service/create-user")
     public ResponseEntity<String> createUser(@RequestBody String jsonString) {
         String url = accountURL + "/create-user";
@@ -42,6 +46,8 @@ public class BrokerServiceRestController {
     }
 
 
+    @Operation(summary = "This method takes the username and password of a user, and returns whether the password" +
+            "is correct.")
     @GetMapping("/account-service/authenticate-user")
     public ResponseEntity<String> authUser(@RequestBody String jsonString) {
         String url = accountURL + "/authenticate-user";
@@ -52,6 +58,8 @@ public class BrokerServiceRestController {
         return checkForError(response.getBody());
     }
 
+    @Operation(summary = "This method takes a username and password, and deletes the user from the database" +
+            "of the username and password are correct.")
     @DeleteMapping("/account-service/delete-user")
     public ResponseEntity<String> deleteUser(@RequestBody String jsonString) {
         String url = accountURL + "/delete-user";
