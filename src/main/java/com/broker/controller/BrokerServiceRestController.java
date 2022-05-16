@@ -18,8 +18,9 @@ public class BrokerServiceRestController {
 
     @Autowired
     private RestTemplate restTemplate;
-    private String accountURL = "http://localhost:8082/account-service";
-    private String searchURL = "http://localhost:8081/search-service";
+    //private String accountURLforPC = "http://localhost:8082/account-service";
+    private String accountURL = "http://account:8082/account-service";
+    //private String searchURL = "http://localhost:8081/search-service";
 
 
     @Operation(summary = "This method takes the username of a user, and retrieves the email attached to that user" +
