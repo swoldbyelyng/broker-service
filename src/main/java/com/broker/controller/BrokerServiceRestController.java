@@ -22,6 +22,9 @@ public class BrokerServiceRestController {
     private String accountURL = "http://account:8082/account-service";
     //private String searchURL = "http://localhost:8081/search-service";
 
+    //test-testmethod. I needed some easy shit to test the client calls on
+    @GetMapping("/hello")
+    public String hellotest(){ return "hello";}
 
     @Operation(summary = "This method takes the username of a user, and retrieves the email attached to that user" +
             ", assuming the user exists in the database.")
